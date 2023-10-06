@@ -38,10 +38,15 @@ const nounourses = [{
 
 function afficherNounoursNameParagraphe(nounours) {
     for (const nounourse of nounourses) {
-        console.log("<p>" + nounourse.name + "</p>");
+        var element = document.createElement("p");
+        element.innerHTML = nounourse.name;
+        console.log(element);
+        document.getElementById("main").appendChild(element);
     }
-} // afficher les noms des nounours sous forme de paragraphes dans la page
-/* afficherNounoursNameParagraphe(nounourses);
+}
+afficherNounoursNameParagraphe(nounourses);
+// afficher les noms des nounours sous forme de paragraphes dans la page
+/* 
 node test2.js 
 <p>Norbert</p>
 <p>Arnold</p>
@@ -51,12 +56,18 @@ node test2.js
 
 function afficherDivAvecNomEtPrixNounours(nounours) {
     for (const nounourse of nounourses) {
-        console.log("<div>" +
-            nounourse.name + " " + nounourse.price / 100 +
-            "€</div>");
+        var element = document.createElement("div");
+        element.innerHTML = nounourse.name + " " + nounourse.price / 100 + "€";
+        console.log(element);
+        document.getElementById("main").appendChild(element);
+        /*  console.log("<div>" +
+             nounourse.name + " " + nounourse.price / 100 +
+             "€</div>"); */
     }
-} // pour chaque nounours, creer division et a l'interieur, ajoute nom + prix du nounours
-/* afficherDivAvecNomEtPrixNounours(nounourses);
+}
+afficherDivAvecNomEtPrixNounours(nounourses);
+// pour chaque nounours, creer division et a l'interieur, ajoute nom + prix du nounours
+/* 
 node test2.js 
 <div>Norbert 29€</div>
 <div>Arnold 39€</div>
@@ -64,8 +75,51 @@ node test2.js
 <div>Gustav 45€</div>
 <div>Garfunkel 55€</div> */
 
-function afficherPhotoDesNounours(nounours) {} // reussir a integrer les liens dans la balise src de tag <img>
+function afficherPhotoDesNounours(nounours) {
 
-function afficherLeToutSousFormeDeDivisions(nounours) {} // combiner tout et faire un apercu du produit (image, nom, prix + bouton "voir produit")
+    for (const nounourse of nounourses) {
+        var element = document.createElement("img");
+        // remplacer/modifier à la source de l'img
+        element.src = nounourse.imageUrl;
+        // inserer dans le html
+        document.getElementById("main").appendChild(element);
+    }
 
-// 5) reussir a faire la page de produit (il ne s'agit plus de faire un apercu des produits comme sur la page d'accueil, mais bien de remplir les informations sur un template de page HTML)
+} // reussir a integrer les liens dans la attribut src de tag <img>
+afficherPhotoDesNounours(nounourses);
+
+function afficherLeToutSousFormeDeDivisions(nounours) {
+    //on a un conteneur pour le produit
+    var container = document.createElement("div");
+    container.setAttribute("id", "produits");
+    for (const nounourse of nounourses) {
+        //chaque produit a un conteur produit qui contient son image nom prix etc
+        var produit = document.createElement("div");
+        //on a une image
+        var picture = document.createElement("img");
+        // remplacer/modifier à la source de l'img
+        picture.src = nounourse.imageUrl;
+        produit.appendChild(picture);
+
+        //on a le titre et le prix
+        var title = document.createElement("div");
+        title.innerHTML = nounourse.name + " " + nounourse.price / 100 + "€";
+        produit.appendChild(title);
+
+        //on a le bouton
+        var button = document.createElement("button");
+        button.innerHTML = "voir produit ";
+        produit.appendChild(button);
+        /*  console.log("<div>" +
+             nounourse.name + " " + nounourse.price / 100 +
+             "€</div>"); */
+        container.appendChild(produit);
+    }
+    document.getElementById("main").appendChild(container);
+}
+afficherLeToutSousFormeDeDivisions(nounourses);
+// combiner tout et faire un apercu du produit (image, nom, prix + bouton "voir produit")
+
+/* 5) reussir a faire la page de produit (il ne s'agit plus de faire un apercu des produits
+ comme sur la page d'accueil, mais bien de remplir les informations sur un template de page HTML)
+ */

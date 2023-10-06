@@ -38,9 +38,7 @@ const nounourses = [{
 
 function afficherNomDesNounours(array) {
     for (const nounourse of nounourses) {
-        // Ceci sera exécuté 5 fois
-        // À chaque éxécution, la variable "pas" augmentera de 1
-        // Lorsque'elle sera arrivée à 5, le boucle se terminera.
+
         console.log(nounourse.name);
     }
 
@@ -58,9 +56,7 @@ Garfunkel*/
 function afficherPrixTotal(array) {
     var prix = 0;
     for (const nounourse of nounourses) {
-        // Ceci sera exécuté 5 fois
-        // À chaque éxécution, la variable "pas" augmentera de 1
-        // Lorsque'elle sera arrivée à 5, le boucle se terminera.
+
         prix += nounourse.price / 100;
     }
     console.log(prix);
@@ -72,7 +68,7 @@ node test.js
 
 function afficherMoitiePrix(array) {
     for (const nounourse of nounourses) {
-        console.log(nounourse.name + " à -50% est à " + nounourse.price / 200 + "€");
+        console.log(nounourse.name + " à -50% est à " + nounourse.price * 0.5 / 100 + "€");
     }
 }
 /*afficherMoitiePrix(nounourses);
@@ -85,7 +81,7 @@ Garfunkel à -50% est à 27.5€*/
 // si tu peux, essaye aussi d'afficher celui à -20%
 function afficherVingtPrix(array) {
     for (const nounourse of nounourses) {
-        console.log(nounourse.name + " à -20% est à " + (nounourse.price * 0.8) / 100 + "€");
+        console.log(nounourse.name + " à -20% est à " + nounourse.price * (1 - 0.2) / 100 + "€");
     }
 }
 /* afficherVingtPrix(nounourses);
@@ -136,9 +132,7 @@ Norbert coûte + de moins 30€ il coute ( 29€) */
 function afficherSommeDescriptions(array) {
     var SOMME = "";
     for (const nounourse of nounourses) {
-        // Ceci sera exécuté 5 fois
-        // À chaque éxécution, la variable "pas" augmentera de 1
-        // Lorsque'elle sera arrivée à 5, le boucle se terminera.
+
         SOMME += nounourse.description + " ";
     }
     console.log(SOMME);
@@ -153,7 +147,7 @@ function afficherTroisiemeCouleurDispo(array) {
         var color = "";
         /*     console.log(nounourse.colors.length >= 2); //debug
          */
-        if (nounourse.colors.length >= 2) {
+        if (nounourse.colors[2]) {
             console.log(nounourse.colors[2]);
         }
     }
